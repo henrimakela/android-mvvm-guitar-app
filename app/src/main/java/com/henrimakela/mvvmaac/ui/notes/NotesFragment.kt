@@ -1,4 +1,4 @@
-package com.henrimakela.mvvmaac.ui.chords
+package com.henrimakela.mvvmaac.ui.notes
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,24 +9,24 @@ import android.view.ViewGroup
 
 import com.henrimakela.mvvmaac.R
 
-class Chords : Fragment() {
+class NotesFragment : Fragment() {
 
     companion object {
-        fun newInstance() = Chords()
+        fun newInstance() = NotesFragment()
     }
 
-    private lateinit var viewModel: ChordsViewModel
+    private lateinit var viewModel: NotesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.chords_fragment, container, false)
+        return inflater.inflate(R.layout.notes_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ChordsViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(NotesViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

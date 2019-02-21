@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph">
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@+id/notesFragment">
 
+    <fragment android:id="@+id/chordsFragment" android:name="com.henrimakela.mvvmaac.ui.chords.ChordsFragment"
+              android:label="chords_fragment" tools:layout="@layout/chords_fragment"/>
+    <fragment android:id="@+id/notesFragment" android:name="com.henrimakela.mvvmaac.ui.notes.NotesFragment"
+              android:label="notes_fragment" tools:layout="@layout/notes_fragment"/>
+    <fragment android:id="@+id/cofFragment" android:name="com.henrimakela.mvvmaac.ui.cof.CofFragment"
+              android:label="cof_fragment" tools:layout="@layout/cof_fragment"/>
 </navigation>

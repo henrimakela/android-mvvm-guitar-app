@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/chordFragment"
+        android:id="@+id/chordsFragment"
+        android:icon="@drawable/icon_chord"
         android:title="@string/chords"
     />
     <item
             android:id="@+id/notesFragment"
+            android:icon="@drawable/note_icon"
             android:title="@string/notes"
     />
     <item
             android:id="@+id/cofFragment"
+            android:icon="@drawable/circle_icon"
             android:title="@string/circle_of_fifths"
     />
 </menu>
