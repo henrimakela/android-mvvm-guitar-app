@@ -1,11 +1,13 @@
 package com.henrimakela.mvvmaac.ui.chords
 
+import android.opengl.Visibility
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.lifecycle.Observer
 
 import com.henrimakela.mvvmaac.R
@@ -43,27 +45,37 @@ class ChordsFragment : ScopedFragment(), KodeinAware {
         bindUI()
     }
 
-    private fun bindUI() = launch{
+    private fun bindUI(){
 
-        val chords = viewModel.chords.await()
+        /*val chords = viewModel.chords.await()
         chords.observe(this@ChordsFragment, Observer {
             if(it == null)return@Observer
             println(it.toString())
+        })*/
+
+        viewModel.currentKey.observe(this@ChordsFragment, Observer {
+            println("outside coroutine")
+
+            launch {
+                println("Inside Coroutine")
+                group_loading.visibility = View.VISIBLE
+                viewModel.getChordsLike(it).observe(this@ChordsFragment, Observer {
+                    data_text.text = ""
+
+                    for (chordResponse in it) {
+                        data_text.append(chordResponse.chordName + "\n")
+                    }
+                    group_loading.visibility = View.GONE
+                })
+            }
         })
+
         key_picker.minValue = 0
         key_picker.maxValue = MusicTheoryObject.MAJOR_KEYS.size - 1
         key_picker.displayedValues = MusicTheoryObject.MAJOR_KEYS
 
-        button.setOnClickListener {
-            launch {
-                println("ONCLIKKKK")
-                viewModel.getChordsOf("F").observe(this@ChordsFragment, Observer {
-                    println("from fragment: $it")
-                })
-            }
-        }
         key_picker.setOnValueChangedListener { picker, oldVal, newVal ->
-
+            viewModel.currentKey.postValue(MusicTheoryObject.MAJOR_KEYS[newVal])
         }
 
 

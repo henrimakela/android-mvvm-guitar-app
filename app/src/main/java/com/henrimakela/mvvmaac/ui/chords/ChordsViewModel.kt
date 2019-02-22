@@ -1,6 +1,7 @@
 package com.henrimakela.mvvmaac.ui.chords
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import com.henrimakela.mvvmaac.data.network.response.ChordResponse
 import com.henrimakela.mvvmaac.data.repository.MusicTheoryRepository
@@ -10,8 +11,11 @@ class ChordsViewModel(private val musicTheoryRepository: MusicTheoryRepository) 
     val chords by lazyDeferred {
         musicTheoryRepository.getChordsLike("F")
     }
+    val currentKey: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
 
-    suspend fun getChordsOf(chord: String) : LiveData<List<ChordResponse>>{
-        return musicTheoryRepository.getChordsLike("F")
+    suspend fun getChordsLike(chord: String): LiveData<List<ChordResponse>>{
+        return musicTheoryRepository.getChordsLike(chord)
     }
 }
