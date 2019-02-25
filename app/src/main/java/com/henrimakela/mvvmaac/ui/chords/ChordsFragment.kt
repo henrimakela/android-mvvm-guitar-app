@@ -61,10 +61,15 @@ class ChordsFragment : ScopedFragment(), KodeinAware {
                 group_loading.visibility = View.VISIBLE
                 viewModel.getChordsLike(it).observe(this@ChordsFragment, Observer {
                     data_text.text = ""
-
-                    for (chordResponse in it) {
-                        data_text.append(chordResponse.chordName + "\n")
+                    if(it.err != null){
+                        data_text.text = it.err
                     }
+                    else{
+                        for (chordResponse in it.response!!) {
+                            data_text.append(chordResponse.chordName + "\n")
+                        }
+                    }
+
                     group_loading.visibility = View.GONE
                 })
             }

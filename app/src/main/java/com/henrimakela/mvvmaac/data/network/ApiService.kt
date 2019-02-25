@@ -1,6 +1,7 @@
 package com.henrimakela.mvvmaac.data.network
 
 import com.henrimakela.mvvmaac.data.network.response.ChordResponse
+import com.henrimakela.mvvmaac.data.network.response.DataWrapper
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
